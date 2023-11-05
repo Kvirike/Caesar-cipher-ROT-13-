@@ -2,17 +2,20 @@ function rot13(str) {
     let result = ""
     let firstHalf = "ABCDEFGHIJKLM";
     let secondHalf = "NOPQRSTUVWXYZ";
-    for(let i = 0; i < str.length; i++){
-      let decodingLetter = str[i];
-      if(firstHalf.indexOf(decodingLetter) >= 0){
-        result += secondHalf[firstHalf.indexOf(decodingLetter)];
+
+    str.split("").forEach(function(decodingLetter, index){
+        let alphabetStartIndex = firstHalf.indexOf(decodingLetter)
+        let alphabetEndIndex = secondHalf.indexOf(decodingLetter)
+        
+      if(alphabetStartIndex >= 0){
+        result += secondHalf[alphabetStartIndex];
       }
-      else if(secondHalf.indexOf(decodingLetter) >= 0){
-        result += firstHalf[secondHalf.indexOf(decodingLetter)];
+      else if(alphabetEndIndex >= 0){
+        result += firstHalf[alphabetEndIndex];
       }else{
         result += decodingLetter
       }
-    }
+    });
     return result
   }
   
